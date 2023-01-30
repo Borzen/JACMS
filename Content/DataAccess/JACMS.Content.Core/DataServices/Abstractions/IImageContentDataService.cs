@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace JACMS.Content.Core.DataServices.Abstractions
 {
-    public interface IDocumentDataService
+    public interface IImageContentDataService
     {
-        Document Get(int id);
-        List<Document> Get();
-        void Create(Document document);
-        void Update(Document document);
+        ImageContent Get(int id);
+        List<ImageContent> Get();
+        void Create(ImageContent image);
+        void Update(ImageContent image);
         void Delete(int id);
     }
 }

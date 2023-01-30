@@ -6,10 +6,25 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-JACMS.Content.PageBuilder-dd40fa24-49a0-47c4-b12f-878422315a0f</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Processes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\JACMS.Content.APIClient\JACMS.Content.APIClient.csproj" />
+    <ProjectReference Include="..\..\DataAccess\JACMS.Content.CommandHandlers\JACMS.Content.CommandHandlers.csproj" />
+    <ProjectReference Include="..\..\DataAccess\JACMS.Content.Core\JACMS.Content.Core.csproj" />
+    <ProjectReference Include="..\..\DataAccess\JACMS.Content.Infrastructure\JACMS.Content.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\DataAccess\JACMS.Content.QueryHandlers\JACMS.Content.QueryHandlers.csproj" />
   </ItemGroup>
 </Project>

@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\DataAccess\JACMS.Content.QueryHandlers\JACMS.Content.QueryHandlers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
-
 </Project>

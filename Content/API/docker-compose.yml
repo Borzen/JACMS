@@ -38,3 +38,12 @@ services:
     restart: always
     ports:
         - 6379:6379
+  jacms.content.pagebuilder:
+    image: ${DOCKER_REGISTRY-}jacmscontentpagebuilder
+    build:
+      context: ..
+      dockerfile: Services/JACMS.Content.PageBuilder/Dockerfile
+    depends_on:
+        - jacms.content.api
+        - documentDb
+        - db
