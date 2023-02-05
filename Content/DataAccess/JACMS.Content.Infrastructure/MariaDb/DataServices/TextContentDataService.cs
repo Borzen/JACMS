@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JACMS.Content.Infrastructure.MySql.DataServices
+namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
     public class TextContentDataService : ITextContentDataService
     {

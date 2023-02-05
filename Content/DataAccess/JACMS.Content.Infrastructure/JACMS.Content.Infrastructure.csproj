@@ -11,7 +11,7 @@
     <Folder Include="Redis\Repositories\" />
     <Folder Include="Helpers\" />
     <Folder Include="Mongo\Repositories\" />
-    <Folder Include="MySql\Repositories\" />
+    <Folder Include="MariaDb\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

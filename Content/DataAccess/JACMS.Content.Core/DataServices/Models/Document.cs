@@ -12,8 +12,5 @@ namespace JACMS.Content.Core.DataServices.Models
         public string Name { get; set; }
         public DateTime CreatedDateTime { get; set; } = DateTime.UtcNow;
         public int? CreatedBy { get; set; }
-
-        //MultiReferences
-        List<Section> Sections { get; set; }
     }
 }

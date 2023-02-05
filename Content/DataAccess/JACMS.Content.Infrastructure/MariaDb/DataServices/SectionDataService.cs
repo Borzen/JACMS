@@ -6,18 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JACMS.Content.Infrastructure.MySql.DataServices
+namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
-    public class DocumentDataService : IDocumentDataService
+    public class SectionDataService : ISectionDataService
     {
         private readonly string _connectionString;
-        
-        public DocumentDataService(string connectionString)
+        public SectionDataService(string connectionString)
         {
             _connectionString = connectionString;
         }
-
-        public void Create(Document document)
+        public void Create(Section section)
         {
             throw new NotImplementedException();
         }
@@ -27,17 +25,17 @@ namespace JACMS.Content.Infrastructure.MySql.DataServices
             throw new NotImplementedException();
         }
 
-        public Document Get(int id)
+        public Section Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Document> Get()
+        public List<Section> Get()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Document document)
+        public void Update(Section section)
         {
             throw new NotImplementedException();
         }

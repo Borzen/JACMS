@@ -6,16 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JACMS.Content.Infrastructure.MySql.DataServices
+namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
-    public class TextTypeDataService : ITextTypeDataService
+    public class ImageContentDataService : IImageContentDataService
     {
         private readonly string _connectionString;
-        public TextTypeDataService(string connectionString)
+
+        public ImageContentDataService(string connectionString)
         {
             _connectionString = connectionString;
         }
-        public void Create(TextType textType)
+
+        public void Create(ImageContent image)
         {
             throw new NotImplementedException();
         }
@@ -25,17 +27,17 @@ namespace JACMS.Content.Infrastructure.MySql.DataServices
             throw new NotImplementedException();
         }
 
-        public TextType Get(int id)
+        public ImageContent Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<TextType> Get()
+        public List<ImageContent> Get()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(TextType textType)
+        public void Update(ImageContent image)
         {
             throw new NotImplementedException();
         }
