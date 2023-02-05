@@ -267,3 +267,5 @@ environment.*.json
 environment.json
 .env
 *.bak
+/DockerFiles/RabbitMQ/rabbitmq-env.conf
+/DockerFiles/RabbitMQ/rabbitmq.conf
