@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Models\" />
     <Folder Include="Queries\Abstractions\" />
-    <Folder Include="Repositories\Abstractions\" />
     <Folder Include="Repositories\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
 </Project>

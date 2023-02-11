@@ -12,7 +12,7 @@ namespace JACMS.Content.Core.DataServices.Models
         [UpdateParam, DeleteParam, UndeleteParam]
         public int DocumentId { get; set; }
         [CreateParam]
-        public string Name { get; set; }
+        public string DocumentName { get; set; }
         [CreateParam]
         public DateTime CreatedDateTime { get; set; } = DateTime.UtcNow;
         [CreateParam]

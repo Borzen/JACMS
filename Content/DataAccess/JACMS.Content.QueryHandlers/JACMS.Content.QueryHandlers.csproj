@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JACMS.Content.Core\JACMS.Content.Core.csproj" />
     <ProjectReference Include="..\JACMS.Content.Infrastructure\JACMS.Content.Infrastructure.csproj" />
   </ItemGroup>
