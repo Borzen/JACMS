@@ -23,10 +23,6 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
             _connectionString = connectionString;
             _mapper = new DapperTableMapper<Document>(
               SQLQueries.DocumentSelectTemplate
-            , SQLStoredProcedures.DocumentCreateProcedure
-            , SQLStoredProcedures.DocumentUpdateProcedure
-            , SQLStoredProcedures.DocumentDeleteProcedure
-            , SQLStoredProcedures.DocumentUndeleteProdcedure
             , MapParametersToProperties
             , MapPropertyToParameter);
         }
@@ -39,7 +35,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
                 MySqlTransaction transaction = connection.BeginTransaction();
                 try
                 {
-                    connection.Execute(_mapper.CreateProc, parameters, commandType: CommandType.StoredProcedure);
+                    connection.Execute(SQLStoredProcedures.DocumentCreate, parameters, commandType: CommandType.StoredProcedure);
                 }
                 catch(Exception ex)
                 {
@@ -55,12 +51,12 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
             if (unDelete)
             {
                 parameters = _mapper.UndeleteParamaterMap(document);
-                function = _mapper.UndeleteProc;
+                function = SQLStoredProcedures.DocumentUndelete;
             }
             else
             {
                 parameters = _mapper.DeleteParamaterMap(document);
-                function = _mapper.DeleteProc;
+                function = SQLStoredProcedures.DocumentUndelete;
             }
             using (var connection = new MySqlConnection(_connectionString))
             {

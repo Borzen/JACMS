@@ -23,6 +23,10 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
                     return SQLParamaters.CreatedDateTime;
                 case "CreatedBy":
                     return SQLParamaters.CreatedBy;
+                case "IsDeleted":
+                    return SQLParamaters.IsDeleted;
+                case "DeletedBy":
+                    return SQLParamaters.DeletedBy;
                 default:
                     return "";
             }

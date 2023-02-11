@@ -1,5 +1,7 @@
 ﻿using JACMS.Content.Core.DataServices.Abstractions;
 using JACMS.Content.Core.DataServices.Models;
+using JACMS.Content.Infrastructure.MariaDb.Constants;
+using JACMS.Content.Infrastructure.MariaDb.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +10,17 @@ using System.Threading.Tasks;
 
 namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
-    public class SectionDataService : ISectionDataService
+    public partial class SectionDataService : ISectionDataService
     {
         private readonly string _connectionString;
+        private readonly DapperTableMapper<Section> _mapper;
         public SectionDataService(string connectionString)
         {
             _connectionString = connectionString;
+            _mapper = new DapperTableMapper<Section>(
+                      SQLQueries.SectionTemplate,
+                      MapToObject,
+                      MapPropertiesToParamaters);
         }
         public void Create(Section section)
         {

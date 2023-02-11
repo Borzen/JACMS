@@ -12,10 +12,6 @@ namespace JACMS.Content.Infrastructure.MariaDb.Helpers
     internal class DapperTableMapper<T> : IDapperMapper<T>
     {
         private readonly string _baseSelectTemplate;
-        private readonly string _createStoredProc;
-        private readonly string _updateStoredProc;
-        private readonly string _deleteStoredProc;
-        private readonly string _undeleteStoredProc;
         private readonly Func<dynamic, T> _mapperSwitch;
         private readonly Func<string, string> _paramaterMapper;
 
@@ -23,36 +19,12 @@ namespace JACMS.Content.Infrastructure.MariaDb.Helpers
         {
             get { return !string.IsNullOrEmpty(_baseSelectTemplate) ? _baseSelectTemplate : ""; }
         }
-        public string CreateProc
-        {
-            get { return !string.IsNullOrEmpty(_createStoredProc) ? _createStoredProc : ""; }
-        }
-        public string UpdateProc
-        {
-            get { return !string.IsNullOrEmpty(_updateStoredProc) ? _updateStoredProc : ""; }
-        }
-        public string DeleteProc
-        {
-            get { return !string.IsNullOrEmpty(_deleteStoredProc) ? _deleteStoredProc : ""; }
-        }
-        public string UndeleteProc
-        {
-            get { return !string.IsNullOrEmpty(_undeleteStoredProc) ? _undeleteStoredProc : ""; }
-        }
 
         public DapperTableMapper(string baseSelectTemplate
-                                , string createStoredProc
-                                , string updateStoredProc
-                                , string deleteStoredProc
-                                , string undeleteStoredProd
                                 , Func<dynamic, T> mapperSwitch
                                 , Func<string, string> paramaterMapper)
         {
             _baseSelectTemplate = baseSelectTemplate;
-            _createStoredProc = createStoredProc;
-            _updateStoredProc = updateStoredProc;
-            _deleteStoredProc = deleteStoredProc;
-            _undeleteStoredProc = undeleteStoredProd;
             _mapperSwitch = mapperSwitch;
             _paramaterMapper = paramaterMapper;
         }

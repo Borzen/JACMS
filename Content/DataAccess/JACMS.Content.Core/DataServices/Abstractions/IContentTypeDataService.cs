@@ -12,7 +12,5 @@ namespace JACMS.Content.Core.DataServices.Abstractions
         ContentType Get(int id);
         List<ContentType> Get();
         void Create(ContentType contentType);
-        void Update(ContentType contentType);
-        void Delete(ContentType contentType);
     }
 }

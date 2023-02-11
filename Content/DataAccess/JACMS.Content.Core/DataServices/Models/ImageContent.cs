@@ -17,7 +17,7 @@ namespace JACMS.Content.Core.DataServices.Models
         [CreateParam, UpdateParam]
         public string FileExtension { get; set; }
         [CreateParam]
-        public Guid Storagename { get; set; }
+        public Guid StorageName { get; set; }
         [CreateParam,UpdateParam,DeleteParam,UndeleteParam]
         public bool IsDeleted { get; set; }
         [CreateParam]

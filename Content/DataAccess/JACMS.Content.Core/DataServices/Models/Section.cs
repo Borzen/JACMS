@@ -16,7 +16,7 @@ namespace JACMS.Content.Core.DataServices.Models
         [CreateParam]
         public int DocumentId { get; set; }
         [CreateParam, UpdateParam]
-        public int TypeId { get; set; }
+        public int ContentTypeId { get; set; }
         [CreateParam,UpdateParam]
         public int ContentId { get; set; }
         [DeleteParam, UndeleteParam]

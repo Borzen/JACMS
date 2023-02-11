@@ -1,5 +1,7 @@
 ﻿using JACMS.Content.Core.DataServices.Abstractions;
 using JACMS.Content.Core.DataServices.Models;
+using JACMS.Content.Infrastructure.MariaDb.Constants;
+using JACMS.Content.Infrastructure.MariaDb.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +10,18 @@ using System.Threading.Tasks;
 
 namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
-    public class ImageContentDataService : IImageContentDataService
+    public partial class ImageContentDataService : IImageContentDataService
     {
         private readonly string _connectionString;
+        private readonly DapperTableMapper<ImageContent> _mapper;
 
         public ImageContentDataService(string connectionString)
         {
             _connectionString = connectionString;
+            _mapper = new DapperTableMapper<ImageContent>(
+                      SQLQueries.ImageContentTemplate,
+                      MapToObject,
+                      MapPropertyToParameter);
         }
 
         public void Create(ImageContent image)

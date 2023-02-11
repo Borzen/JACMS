@@ -1,5 +1,7 @@
 ﻿using JACMS.Content.Core.DataServices.Abstractions;
 using JACMS.Content.Core.DataServices.Models;
+using JACMS.Content.Infrastructure.MariaDb.Constants;
+using JACMS.Content.Infrastructure.MariaDb.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
-    public class ContentTypeDataService : IContentTypeDataService
+    public partial class ContentTypeDataService : IContentTypeDataService
     {
         private readonly string _connectionString;
+        private readonly DapperTableMapper<ContentType> _mapper;
         public ContentTypeDataService(string connectionString)
         {
             _connectionString = connectionString;
+            _mapper = new DapperTableMapper<ContentType>(
+                      SQLQueries.ContentTypeTemplate,
+                      MapToObject,
+                      MapPropertyToParameter
+                      );
         }
         public void Create(ContentType contentType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(ContentType contentType)
         {
             throw new NotImplementedException();
         }
@@ -31,11 +34,6 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
         }
 
         public List<ContentType> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ContentType contentType)
         {
             throw new NotImplementedException();
         }
