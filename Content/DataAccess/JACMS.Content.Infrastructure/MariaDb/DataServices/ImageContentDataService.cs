@@ -22,7 +22,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(ImageContent image)
         {
             throw new NotImplementedException();
         }

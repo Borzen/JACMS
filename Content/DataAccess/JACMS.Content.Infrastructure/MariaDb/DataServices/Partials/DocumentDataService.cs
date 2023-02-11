@@ -10,6 +10,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
     public partial class DocumentDataService
     {
+
         private string MapPropertyToParameter(string propertyName)
         {
             switch(propertyName)
@@ -17,7 +18,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
                 case "DocumentId":
                     return SQLParamaters.DocumentId;
                 case "Name":
-                    return SQLParamaters.Name;
+                    return SQLParamaters.DocumentName;
                 case "CreatedDateTime":
                     return SQLParamaters.CreatedDateTime;
                 case "CreatedBy":
