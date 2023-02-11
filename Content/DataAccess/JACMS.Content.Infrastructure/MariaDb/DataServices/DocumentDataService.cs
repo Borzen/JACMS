@@ -7,9 +7,9 @@ using System.Linq;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
-using JACMS.Content.Infrastructure.MariaDb.DataServices.Helpers;
 using Dapper;
 using MySql.Data.MySqlClient;
+using JACMS.Content.Infrastructure.MariaDb.Helpers;
 
 namespace JACMS.Content.Infrastructure.MariaDb.DataServices
 {
@@ -21,16 +21,19 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
         public DocumentDataService(string connectionString)
         {
             _connectionString = connectionString;
-            _mapper = new DapperTableMapper<Document>(SQLQueries.DocumentSelectTemplate
+            _mapper = new DapperTableMapper<Document>(
+              SQLQueries.DocumentSelectTemplate
             , SQLStoredProcedures.DocumentCreateProcedure
             , SQLStoredProcedures.DocumentUpdateProcedure
+            , SQLStoredProcedures.DocumentDeleteProcedure
+            , SQLStoredProcedures.DocumentUndeleteProdcedure
             , MapParametersToProperties
             , MapPropertyToParameter);
         }
 
         public void Create(Document document)
         {
-            DynamicParameters parameters = _mapper.CreateParamaterMap(document,isCreate: true);
+            DynamicParameters parameters = _mapper.CreateParamaterMap(document);
             using(var connection = new MySqlConnection(_connectionString))
             {
                 MySqlTransaction transaction = connection.BeginTransaction();
@@ -45,9 +48,32 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
             }
         }
 
-        public void Delete(int id)
+        public void Delete(Document document, bool unDelete = false)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = null;
+            string function = "";
+            if (unDelete)
+            {
+                parameters = _mapper.UndeleteParamaterMap(document);
+                function = _mapper.UndeleteProc;
+            }
+            else
+            {
+                parameters = _mapper.DeleteParamaterMap(document);
+                function = _mapper.DeleteProc;
+            }
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                MySqlTransaction transaction = connection.BeginTransaction();
+                try
+                {
+                    connection.Execute(function, parameters, commandType: CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Dispose();
+                }
+            }
         }
 
         public Document Get(int id)
@@ -56,11 +82,6 @@ namespace JACMS.Content.Infrastructure.MariaDb.DataServices
         }
 
         public List<Document> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Document document)
         {
             throw new NotImplementedException();
         }

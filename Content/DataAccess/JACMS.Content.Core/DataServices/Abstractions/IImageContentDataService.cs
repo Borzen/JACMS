@@ -13,6 +13,6 @@ namespace JACMS.Content.Core.DataServices.Abstractions
         List<ImageContent> Get();
         void Create(ImageContent image);
         void Update(ImageContent image);
-        void Delete(int id);
+        void Delete(ImageContent image);
     }
 }

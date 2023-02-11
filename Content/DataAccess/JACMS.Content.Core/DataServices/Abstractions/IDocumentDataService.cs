@@ -12,7 +12,6 @@ namespace JACMS.Content.Core.DataServices.Abstractions
         Document Get(int id);
         List<Document> Get();
         void Create(Document document);
-        void Update(Document document);
-        void Delete(int id);
+        void Delete(Document document, bool unDelete = false);
     }
 }

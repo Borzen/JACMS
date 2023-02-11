@@ -9,7 +9,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.Constants
     public class SQLParamaters
     {
         public const string DocumentId = "DocumentId";
-        public const string Name = "Name";
+        public const string DocumentName = "DocumentName";
         public const string CreatedDateTime = "CreatedDateTime";
         public const string CreatedBy = "CreatedBy";
     }
@@ -19,8 +19,10 @@ namespace JACMS.Content.Infrastructure.MariaDb.Constants
     }
     public class SQLStoredProcedures
     {
-        public const string DocumentCreateProcedure = "";
-        public const string DocumentUpdateProcedure = "";
+        public const string DocumentCreateProcedure = "usp_Document_Create";
+        public const string DocumentUpdateProcedure = "usp_Document_Update";
+        public const string DocumentDeleteProcedure = "usp_Document_Delete";
+        public const string DocumentUndeleteProdcedure = "usp_Document_UnDelete";
     }
 
 }

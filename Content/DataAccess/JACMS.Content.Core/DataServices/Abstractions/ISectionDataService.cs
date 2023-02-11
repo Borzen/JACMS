@@ -13,6 +13,6 @@ namespace JACMS.Content.Core.DataServices.Abstractions
         List<Section> Get();
         void Create(Section section);
         void Update(Section section);
-        void Delete(int id);
+        void Delete(Section section);
     }
 }
