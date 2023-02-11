@@ -4,7 +4,7 @@ using JACMS.Content.Core.DataServices.Abstractions;
 using JACMS.Content.Core.DataServices.Models;
 using JACMS.Content.Core.Services.Abstractions;
 using JACMS.Content.Infrastructure.Mongo.DataServices;
-using JACMS.Content.Infrastructure.MySql.DataServices;
+using JACMS.Content.Infrastructure.MariaDb.DataServices;
 using System;
 
 namespace JACMS.Content.API.Dependicies.Resolvers

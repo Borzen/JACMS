@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JACMS.Content.Core.DataServices.Models.Attributes;
-
+﻿using JACMS.Content.Core.DataServices.Models.Attributes;
 
 namespace JACMS.Content.Core.DataServices.Models
 {

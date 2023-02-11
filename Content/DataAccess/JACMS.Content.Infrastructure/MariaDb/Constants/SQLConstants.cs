@@ -48,7 +48,7 @@ namespace JACMS.Content.Infrastructure.MariaDb.Constants
         public const string ImageContentTemplate = "Select * From ImageContent";
         public const string SectionTemplate = "Select * from Section";
         public const string TextContentTemplate = "Select * from TextContent";
-        public const string TextTypeTemplate = "Select * from TextType";
+        public const string TextTypeTemplate = "Select * from TextType {0}";
     }
     public class SQLStoredProcedures
     {
