@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DataServices\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="SQLScripts\Init\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Middleware\JACMS.API.Core\JACMS.API.Core.csproj" />
+    <ProjectReference Include="..\JACMS.API.DataAccess.Universal\JACMS.API.DataAccess.Core.csproj" />
+  </ItemGroup>
+
+</Project>
