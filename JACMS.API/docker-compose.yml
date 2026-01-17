@@ -7,14 +7,10 @@ services:
         - 5432:5432
     environment:
         POSTGRES_PASSWORD: LocalDevP@ssword
+        POSTGRES_USER: JACMSUser
         POSTGRES_DB: JACMS
   jacms.api:
     image: ${DOCKER_REGISTRY-}jacmsapi
     build:
       context: .
       dockerfile: JACMS.API/Dockerfile
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
