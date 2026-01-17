@@ -9,6 +9,8 @@ services:
         POSTGRES_PASSWORD: LocalDevP@ssword
         POSTGRES_USER: JACMSUser
         POSTGRES_DB: JACMS
+    volumes:
+      - ./pg-sql-init:/docker-entrypoint-initdb.d
   jacms.api:
     image: ${DOCKER_REGISTRY-}jacmsapi
     build:

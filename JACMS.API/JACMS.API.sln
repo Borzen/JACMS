@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JACMS.API.DataAccess.PostgreSQL", "DataAccess\JACMS.API.DataAccess.PostgreSQL\JACMS.API.DataAccess.PostgreSQL.csproj", "{9A323680-37EF-4B95-8817-45D82EDB4CDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JACMS.API.DataAccess.Core", "DataAccess\JACMS.API.DataAccess.Universal\JACMS.API.DataAccess.Core.csproj", "{9C3C41BE-1208-432B-A71F-00FCA01A72ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JACMS.API.DataAccess.Core", "DataAccess\JACMS.API.DataAccess.Core\JACMS.API.DataAccess.Core.csproj", "{9C3C41BE-1208-432B-A71F-00FCA01A72ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middleware", "Middleware", "{C09CA179-A9A7-4053-86EB-FB8C311A25F8}"
 EndProject
