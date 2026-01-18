@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Middleware\JACMS.API.Core\JACMS.API.Core.csproj" />
     <ProjectReference Include="..\JACMS.API.DataAccess.Core\JACMS.API.DataAccess.Core.csproj" />
   </ItemGroup>
 

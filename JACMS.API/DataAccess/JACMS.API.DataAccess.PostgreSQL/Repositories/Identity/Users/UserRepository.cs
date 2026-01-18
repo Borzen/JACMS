@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using JACMS.API.DataAccess.Core.Abstractions.Repositories;
+using JACMS.API.DataAccess.Core.Abstractions.Repositories.Identity;
 using JACMS.API.DataAccess.Core.Models.Identity;
 using JACMS.API.DataAccess.PostgreSQL.Helpers;
 using JACMS.API.DataAccess.PostgreSQL.Helpers.Identity;
@@ -14,16 +14,33 @@ using System.Threading.Tasks;
 
 namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
 {
-    internal class UserRepository : IUserRepository
+    internal partial class UserRepository : IUserRepository
     {
         private readonly DbContext _dbContext;
         private ILogger<UserRepository> _logger;
+
+        public IQueryable<User> Users {
+            get
+            {
+                using (var connection = _dbContext.GetDbConnection())
+                {
+                    return connection.Query<User>("Select * fron Identity.User").AsQueryable();
+                }
+            }
+        }
 
         public UserRepository(DbContext dbContext, ILogger<UserRepository> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
         }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
+
+        #region Create Delete Update
 
         public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
         {
@@ -55,11 +72,14 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             throw new NotImplementedException();
         }
 
-        public void Dispose()
+        public Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #region UserStore Get functions
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
@@ -95,9 +115,6 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

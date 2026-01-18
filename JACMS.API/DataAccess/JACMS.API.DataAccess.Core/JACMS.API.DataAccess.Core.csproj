@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Middleware\JACMS.API.Core\JACMS.API.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Models\Helpers\" />
   </ItemGroup>
 

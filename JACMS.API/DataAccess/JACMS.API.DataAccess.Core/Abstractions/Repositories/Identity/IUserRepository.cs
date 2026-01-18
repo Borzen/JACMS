@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JACMS.API.DataAccess.Core.Abstractions.Repositories
+namespace JACMS.API.DataAccess.Core.Abstractions.Repositories.Identity
 {
-    public interface IUserRepository : IUserStore<User>
+    public interface IUserRepository : IQueryableUserStore<User>, IUserStore<User>, IUserPasswordStore<User>, IUserEmailStore<User>
     {
     }
 }
