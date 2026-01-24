@@ -1,4 +1,6 @@
 ﻿using JACMS.API.DataAccess.Core;
+using JACMS.API.DataAccess.Core.Configurations;
+using Microsoft.Extensions.Options;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,9 @@ namespace JACMS.API.DataAccess.PostgreSQL
         private readonly string _connectionString;
         private IDbConnection _dbConnection;
 
-        public DbContext(string connectionString)
+        public DbContext(IOptions<DBConfig> configuration)
         { 
-            _connectionString = connectionString;
+            _connectionString = configuration.Value.ConnectionString;
         }
 
         public void Dispose()

@@ -13,13 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DataAccess\JACMS.API.DataAccess.PostgreSQL\JACMS.API.DataAccess.PostgreSQL.csproj" />
+    <Folder Include="Models\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Queries\" />
+    <ProjectReference Include="..\..\DataAccess\JACMS.API.DataAccess.Core\JACMS.API.DataAccess.Core.csproj" />
+    <ProjectReference Include="..\JACMS.API.Core\JACMS.API.Core.csproj" />
   </ItemGroup>
 
 </Project>

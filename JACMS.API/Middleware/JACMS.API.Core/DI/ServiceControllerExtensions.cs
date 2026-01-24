@@ -1,5 +1,7 @@
-﻿using JACMS.API.Core.Services.Security;
+﻿using JACMS.API.Core.Configurations;
+using JACMS.API.Core.Services.Identity;
 using JACMS.API.DataAccess.Core.Abstractions.Repositories.Identity;
+using JACMS.API.DataAccess.Core.Configurations;
 using JACMS.API.DataAccess.Core.Models.Identity;
 using JACMS.API.DataAccess.PostgreSQL.DI;
 using Microsoft.AspNetCore.Identity;
@@ -15,9 +17,13 @@ namespace JACMS.API.Core.DI
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddPostgreSQLDataAccess(config);
-            services.AddIdentityServices();
+            services.Configure<DBConfig>(config.GetSection(DBConfig.ConfigurationSection));
+
             //add if postgress
+            services.AddPostgreSQLDataAccess(config);
+
+            services.AddIdentityServices();
+
             return services;
         }
 

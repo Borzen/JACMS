@@ -15,7 +15,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.DI
     {
         public static IServiceCollection AddPostgreSQLDataAccess(this IServiceCollection services, IConfiguration config)
         {
-            services.AddScoped<IDbContext, DbContext>();
+            services.AddSingleton<IDbContext, DbContext>();
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IRoleRespository, RoleRepository>();
             return services;

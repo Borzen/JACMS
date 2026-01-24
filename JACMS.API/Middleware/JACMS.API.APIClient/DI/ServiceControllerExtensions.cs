@@ -1,4 +1,7 @@
-﻿using JACMS.API.Core.Configurations;
+﻿using JACMS.API.Client.Commands.Abstractions;
+using JACMS.API.Client.Commands.Users;
+using JACMS.API.Core.Configurations;
+using JACMS.API.Core.DI;
 using JACMS.API.DataAccess.PostgreSQL.DI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +13,9 @@ namespace JACMS.API.Client.DI
     {
         public static IServiceCollection AddApiClient(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<DBConfig>(configuration.GetSection(DBConfig.ConfigurationSection));
-            services.AddPostgreSQLDataAccess();
+            services.AddCoreServices(configuration);
+            services.AddScoped<ICreateUserCommand, CreateUserCommand>();
+
             return services;
         }
     }

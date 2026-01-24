@@ -1,5 +1,4 @@
-﻿using JACMS.API.Core.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +12,7 @@ namespace JACMS.API.DataAccess.Core.Models.Post
         public string Title { get; set; }
         public string Excerpt { get; set; }
         public string Password { get; set; }
-        public PostStatuses Status { get; set; }
+        //public PostStatuses Status { get; set; }
         public DateTime? PostedDateTime { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public int CreatedBy { get; set; }

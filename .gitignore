@@ -426,3 +426,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/JACMS.API/JACMS.API/appsettings.Local.json

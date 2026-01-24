@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JACMS.API.DataAccess.Core
 {
-    public interface IDbContext
+    public interface IDbContext : IDisposable
     {
         public IDbConnection GetDbConnection();
     }
