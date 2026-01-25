@@ -57,7 +57,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             {
                 try
                 {
-                    var dynamicParams = user.GetCreateDynamicParams(':');
+                    var dynamicParams = user.GetCreateDynamicParams(':', true);
                     dynamicParams.Add(":new_user_id", direction: System.Data.ParameterDirection.Output);
                     await connection.ExecuteAsync(SQLCommands.Identity.User.Create, dynamicParams, commandType: System.Data.CommandType.StoredProcedure);
                     var newUserId = dynamicParams.Get<long>("new_user_id");
