@@ -8,7 +8,7 @@ namespace JACMS.API.DataAccess.Core.Models.Helpers.Identity
 {
     public static class UserRoleHelper
     {
-        public static DynamicParameters GetCreateUserRoleDynamicParams(this User user, long roleId)
+        public static DynamicParameters GetCreateUserRoleDynamicParams(this User user, long roleId, char seperator = '@')
         {
             if (user == null)
             {
@@ -16,8 +16,8 @@ namespace JACMS.API.DataAccess.Core.Models.Helpers.Identity
             }
 
             DynamicParameters dynamicParams = new DynamicParameters();
-            dynamicParams.Add("@UserId", user.Id);
-            dynamicParams.Add("@RoleId", roleId);
+            dynamicParams.Add(ParamaterFormatterHelper.FormatPram("UserId", seperator), user.Id);
+            dynamicParams.Add(ParamaterFormatterHelper.FormatPram("RoleId", seperator), roleId);
 
             return dynamicParams;
         }

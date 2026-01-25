@@ -53,8 +53,8 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             {
                 try
                 {
-                    var dynamicParams = role.GetCreateDynamicParams();
-                    dynamicParams.Add("new_role_id", dbType: System.Data.DbType.Int64, direction: System.Data.ParameterDirection.Output);
+                    var dynamicParams = role.GetCreateDynamicParams(':');
+                    dynamicParams.Add(":new_role_id", direction: System.Data.ParameterDirection.Output);
                     await connection.ExecuteAsync(SQLCommands.Identity.Role.Create, dynamicParams, commandType: System.Data.CommandType.StoredProcedure);
                     var newRoleId = dynamicParams.Get<long>("new_role_id");
                     role.Id = newRoleId;
@@ -76,7 +76,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             {
                 try
                 {
-                    var dynamicParams = role.GetUpdateDynamicParams();
+                    var dynamicParams = role.GetUpdateDynamicParams(':');
                     await connection.ExecuteAsync(SQLCommands.Identity.Role.Update, dynamicParams, commandType: System.Data.CommandType.StoredProcedure);
                     return IdentityResult.Success;
                 }

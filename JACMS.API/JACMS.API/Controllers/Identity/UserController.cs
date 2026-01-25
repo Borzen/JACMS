@@ -44,6 +44,13 @@ namespace JACMS.API.Controllers.User
             }
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Put([FromRoute] long id, UserCreationRequest request)
+        {
+            return Ok();
+        }
+
         /// <summary>
         /// Gets a user details
         /// </summary>

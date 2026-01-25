@@ -6,6 +6,11 @@ namespace JACMS.API.DataAccess.Core.Models.Helpers
 {
     internal static class ParamaterFormatterHelper
     {
+        internal static string FormatPram(string paramName, char seperator)
+        {
+            return $"{seperator}{paramName}";
+        }
+
         internal static string FormatPram(string paramName, char seperator, bool useSnakeCase)
         {
             if (useSnakeCase)
