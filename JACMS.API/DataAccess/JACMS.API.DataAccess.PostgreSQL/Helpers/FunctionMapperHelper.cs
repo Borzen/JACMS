@@ -16,12 +16,6 @@ namespace JACMS.API.DataAccess.PostgreSQL.Helpers
             return functionCallBuilder.ToString();
         }
 
-        //public static string GenerateStoredProcStatement(string storedProcName, DynamicParameters dynamicParams)
-        //{
-        //    var callBuilder = new StringBuilder($"Call {storedProcName}(");
-        //    var paramNames = GenerateListOfPrams(dynamicParams);
-        //}
-
         private static List<string> GenerateListOfPrams(DynamicParameters dynamicParams)
         {
             var paramNames = new List<string>();
