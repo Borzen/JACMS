@@ -3,9 +3,9 @@
 -- DROP PROCEDURE IF EXISTS "Identity".role_create(character varying, character varying, text);
 
 CREATE OR REPLACE PROCEDURE "Identity".role_create(
-	IN "@RoleName" character varying,
-	IN "@NormalizedName" character varying,
-	IN "@ConcurrencyStamp" text,
+	IN role_name character varying,
+	IN normalized_name character varying,
+	IN concurrency_stamp text,
 	OUT new_role_id bigint)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -21,9 +21,9 @@ BEGIN
 	)
 	VALUES 
 	(
-		"@RoleName",
-		"@NormalizedName",
-		"@ConcurrencyStamp",
+		role_name,
+		normalized_name,
+		concurrency_stamp,
 		FALSE,
 		NOW(),
 		NOW()

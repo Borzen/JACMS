@@ -42,6 +42,8 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
         #region Create Update Delete
         public async Task<IdentityResult> CreateAsync(Role role, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             if (role == null)
             {
                 throw new ArgumentNullException(nameof(role));
@@ -61,14 +63,29 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
                 catch (Exception ex)
                 {
                     //handle error
-                    return IdentityResult.Failed();
+                    throw;
                 }
             }
         }
 
-        public Task<IdentityResult> UpdateAsync(Role role, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(Role role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            using (var connection = _dbContext.GetDbConnection())
+            {
+                try
+                {
+                    var dynamicParams = role.GetUpdateDynamicParams();
+                    await connection.ExecuteAsync(SQLCommands.Identity.Role.Update, dynamicParams, commandType: System.Data.CommandType.StoredProcedure);
+                    return IdentityResult.Success;
+                }
+                catch (Exception ex)
+                {
+                    //handle error
+                    throw;
+                }
+            }
         }
 
         public Task<IdentityResult> DeleteAsync(Role role, CancellationToken cancellationToken)
@@ -78,31 +95,81 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
         #endregion
 
         #region Gets
+
+        /// <inheritdoc/>
         public Task<string> GetRoleIdAsync(Role role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if(role == null)
+            {
+                throw new ArgumentNullException(nameof(role));
+            }
+
+            return Task.FromResult(role.Id.ToString());
         }
 
+        /// <inheritdoc/>
         public Task<string?> GetRoleNameAsync(Role role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if (role == null)
+            {
+                throw new ArgumentNullException(nameof(role));
+            }
+
+            return Task.FromResult(role.Name);
         }
 
-        public Task SetRoleNameAsync(Role role, string? roleName, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <inheritdoc/>
         public Task<string?> GetNormalizedRoleNameAsync(Role role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if(role == null)
+            {
+                throw new ArgumentNullException(nameof(role));
+            }
+
+            return Task.FromResult(role.NormalizedName);
         }
 
+        #endregion
+
+        #region Sets
+        
+        /// <inheritdoc/>
+        public Task SetRoleNameAsync(Role role, string? roleName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if(role == null)
+            {
+                throw new ArgumentNullException(nameof(role));
+            }
+
+            role.Name = roleName;
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
         public Task SetNormalizedRoleNameAsync(Role role, string? normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if(role == null)
+            {
+                throw new ArgumentNullException(nameof(role));
+            }
+
+            role.NormalizedName = normalizedName;
+            return Task.CompletedTask;
         }
 
+        #endregion
+
+        #region Finds
         public Task<Role?> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

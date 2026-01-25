@@ -22,5 +22,20 @@ namespace JACMS.API.DataAccess.Core.Models.Helpers.Identity
 
             return dynamicParams;
         }
+
+        public static DynamicParameters GetUpdateDynamicParams(this Role role)
+        {
+            if (role == null)
+            {
+                return null;
+            }
+
+            DynamicParameters dynamicParams = new DynamicParameters();
+            dynamicParams.Add("@Id", role.Id);
+            dynamicParams.Add("@RoleName", role.Name);
+            dynamicParams.Add("@NormalizedName", role.NormalizedName);
+            dynamicParams.Add("@ConcurrencyStamp", role.ConcurrencyStamp);
+            return dynamicParams;
+        }
     }
 }

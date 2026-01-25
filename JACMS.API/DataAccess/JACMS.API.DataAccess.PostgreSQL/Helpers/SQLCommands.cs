@@ -38,12 +38,23 @@ namespace JACMS.API.DataAccess.PostgreSQL.Helpers
             internal static class User
             {
                 public const string Create = "\"Identity\".user_create";
+                public const string Update = "\"Identity\".user_update";
+                public const string Delete = "\"Identity\".user_delete";
+                public const string Get = "\"Identity\".user_get_all_valid_users";
+                public const string GetByNormalizedName = "\"Identity\".user_get_all_valid_users_by_normalized_name";
+                public const string GetById = "\"Identity\".user_get_all_valid_users_by_id";
             }
 
             internal static class Role
             {
                 public const string Create = "\"Identity\".role_create";
-                public const string GetByNormalizedName = "Select * from \"Identity\".Role where NormalizedName = @NormalizedName";
+                public const string Update = "\"Identity\".role_update";
+                public const string Delete = "\"Identity\".role_delete";
+                public const string Get = "\"Identity\".role_get_all_valid_roles";
+                public const string GetByNormalizedName = "\"Identity\".role_get_all_valid_roles_by_normalized_name";
+                public const string GetByName = "\"Identity\".role_get_all_valid_roles_by_name";
+                public const string GetById = "\"Identity\".role_get_all_valid_roles_by_id";
+
             }
 
             internal static class UserRole

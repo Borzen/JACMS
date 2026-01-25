@@ -3,7 +3,7 @@
 -- DROP FUNCTION IF EXISTS "Identity".role_get_all_valid_roles_by_id(bigint);
 
 CREATE OR REPLACE FUNCTION "Identity".role_get_all_valid_roles_by_id(
-	"@Id" bigint)
+	id bigint)
     RETURNS SETOF "Identity"."Role" 
     LANGUAGE 'plpgsql'
     COST 100
@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION "Identity".role_get_all_valid_roles_by_id(
 AS $BODY$
 BEGIN
 	RETURN QUERY 
-	SELECT * from "Identity"."Role" r where r."Id" = "@Id" AND r."IsDeleted" = FALSE;
+	SELECT * from "Identity"."Role" r where r."Id" = id AND r."IsDeleted" = FALSE;
 END
 $BODY$;
 

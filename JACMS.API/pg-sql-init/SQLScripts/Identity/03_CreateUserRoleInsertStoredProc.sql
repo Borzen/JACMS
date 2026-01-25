@@ -3,8 +3,8 @@
 -- DROP PROCEDURE IF EXISTS "Identity".userrole_create(bigint, bigint);
 
 CREATE OR REPLACE PROCEDURE "Identity".userrole_create(
-	IN "@UserId" bigint,
-	IN "@RoleId" bigint)
+	IN user_id bigint,
+	IN role_id bigint)
 LANGUAGE 'plpgsql'
 AS $BODY$
 BEGIN
@@ -15,8 +15,8 @@ BEGIN
 	)
 	VALUES 
 	(
-		"@UserId",
-		"@RoleId"
+		user_id,
+		role_id
 	);
 	COMMIT;
 End;

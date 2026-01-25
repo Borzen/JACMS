@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace JACMS.API.DataAccess.PostgreSQL
 {
-    internal class DbContext : IDbContext, IDisposable
+    internal class DbContext : IDbContext
     {
         private readonly string _connectionString;
         private IDbConnection _dbConnection;

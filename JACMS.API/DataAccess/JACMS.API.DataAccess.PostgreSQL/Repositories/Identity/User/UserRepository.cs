@@ -43,31 +43,33 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
 
         #region Create Delete Update
 
+        /// <inheritdoc/>
         public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
             if(user == null)
             {
-                return null;
+                throw new ArgumentNullException(nameof(user));
             }
 
             using (var connection = _dbContext.GetDbConnection())
             {
                 try
                 {
-                    var dynamicParams = user.GetCreateDynamicParams();
-                    dynamicParams.Add("new_user_id", dbType: System.Data.DbType.Int64, direction: System.Data.ParameterDirection.Output);
+                    var dynamicParams = user.GetCreateDynamicParams(':', true);
+                    long newId = 0;
+                    dynamicParams.Add(":new_user_id", newId, direction: System.Data.ParameterDirection.Output);
                     await connection.ExecuteAsync(SQLCommands.Identity.User.Create, dynamicParams, commandType: System.Data.CommandType.StoredProcedure);
                     var newUserId = dynamicParams.Get<long>("new_user_id");
                     user.Id = newUserId;
+                    return IdentityResult.Success;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     //handle error
-                    return IdentityResult.Failed();
+                    throw;
                 }
-                return IdentityResult.Success;
             }
         }
 
@@ -83,17 +85,40 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
 
         #endregion
 
-        #region UserStore Get functions
+        #region UserStore Finds
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            using (var connection = _dbContext.GetDbConnection())
+            {
+                try
+                {
+                    DynamicParameters dynamicParams = new DynamicParameters();
+                    dynamicParams.Add("normalized_name", normalizedUserName);
+
+                    var sql = FunctionMapperHelper.GenerateFunctionStatement(SQLCommands.Identity.User.GetByNormalizedName, dynamicParams);
+
+                    var user = await connection.QueryFirstOrDefaultAsync<User>(sql, dynamicParams);
+                    return user;
+                }
+                catch (Exception ex)
+                {
+                    //handle error
+                    throw;
+                }
+            }
+        }
+        #endregion
+
+        #region UserStore Gets
+
+        /// <inheritdoc/>
         public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -106,6 +131,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             return Task.FromResult(user.NormalizedUserName);
         }
 
+        /// <inheritdoc/>
         public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -118,6 +144,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             return Task.FromResult(user.Id.ToString());
         }
 
+        /// <inheritdoc/>
         public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -130,6 +157,11 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             return Task.FromResult(user.UserName);
         }
 
+        #endregion
+
+        #region UserStore Sets
+
+        /// <inheritdoc/>
         public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -143,6 +175,7 @@ namespace JACMS.API.DataAccess.PostgreSQL.Repositories.Identity
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();

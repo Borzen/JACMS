@@ -3,6 +3,8 @@ using JACMS.API.Core.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile($"appsettings.Local.json", true, true);
+
 // Add services to the container.
 builder.Services.AddApiClient(builder.Configuration);
 

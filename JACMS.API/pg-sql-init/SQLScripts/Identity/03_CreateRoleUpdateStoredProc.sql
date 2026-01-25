@@ -3,19 +3,19 @@
 -- DROP PROCEDURE IF EXISTS "Identity".role_update(bigint, character varying, character varying, text);
 
 CREATE OR REPLACE PROCEDURE "Identity".role_update(
-	IN "@Id" bigint,
-	IN "@RoleName" character varying,
-	IN "@NormalizedName" character varying,
-	IN "@ConcurrencyStamp" text)
+	IN id bigint,
+	IN role_name character varying,
+	IN normalized_name character varying,
+	IN concurrency_stamp text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 BEGIN
 	Update "Identity"."Role"
 	Set
-		RoleName = "@RoleName",
-		NormalizedName = "@NormalizedName",
-		ConcurrencyStamp = "@ConcurrencyStamp"
-	Where "Id" = "@Id"
+		RoleName = role_name,
+		NormalizedName = normalized_name,
+		ConcurrencyStamp = concurrency_stamp
+	Where "Id" = id
 	AND IsDeleted = FALSE;
 	COMMIT;
 End;
