@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JACMS.API.Client.Commands.Abstractions
+namespace JACMS.API.Client.Commands.Abstractions.Users
 {
     public interface ICreateUserCommand
     {
-        Task<ResponseData> CreateNewUserAsync(UserCreationRequest request);
+        Task<ResponseData> CreateNewUserAsync(CreateUserRequest request);
     }
 }

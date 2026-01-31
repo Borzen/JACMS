@@ -1,4 +1,4 @@
-﻿using JACMS.API.Client.Commands.Abstractions;
+﻿using JACMS.API.Client.Commands.Abstractions.Users;
 using JACMS.API.Core.Models.Requests.User;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -24,7 +24,7 @@ namespace JACMS.API.Controllers.User
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IActionResult> Put(UserCreationRequest request)
+        public async Task<IActionResult> Put(CreateUserRequest request)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace JACMS.API.Controllers.User
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Put([FromRoute] long id, UserCreationRequest request)
+        public async Task<IActionResult> Put([FromRoute] long id, UpdateUserRequest request)
         {
             return Ok();
         }
@@ -68,6 +68,13 @@ namespace JACMS.API.Controllers.User
         /// <returns></returns>
         [HttpPost]
         public IActionResult Post()
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] long id, DeleteUserRequest request)
         {
             return Ok();
         }

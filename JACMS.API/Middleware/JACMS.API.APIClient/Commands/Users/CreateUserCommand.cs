@@ -1,4 +1,4 @@
-﻿using JACMS.API.Client.Commands.Abstractions;
+﻿using JACMS.API.Client.Commands.Abstractions.Users;
 using JACMS.API.Core.Models.Requests.User;
 using JACMS.API.Core.Models.Response;
 using JACMS.API.Core.Services.Identity;
@@ -22,9 +22,9 @@ namespace JACMS.API.Client.Commands.Users
             _logger = logger;
         }
 
-        public async Task<ResponseData> CreateNewUserAsync(UserCreationRequest request)
+        public async Task<ResponseData> CreateNewUserAsync(CreateUserRequest request)
         {
-            //do basic 
+            //do basic error checking.
             if (request == null)
             {
                 throw new ArgumentNullException(nameof(request));

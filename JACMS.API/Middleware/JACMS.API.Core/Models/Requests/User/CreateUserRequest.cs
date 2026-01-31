@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JACMS.API.Core.Models.Requests.User
 {
-    public class UserCreationRequest
+    public class CreateUserRequest
     {
         [Required]
         public string Email { get; set; }
